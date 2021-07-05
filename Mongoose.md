@@ -71,6 +71,8 @@ router.get('/register',async (req,res)=>{
     
     if(!name || !email || ....){
         res.status(509).json({message:"Empty Field"})
+    }else if(password !== cpassword){
+        res.status(509).json({message:"Password not matches"})
     }
     try{
        const userexist = await User.findOne({email:email})
@@ -114,3 +116,19 @@ router.post('/signin',async (req,res)=>{
     }
 })
 ```
+
+### Password Security using Hashing
+1. ```npm i bcryptjs```
+2. ```const bcrypt = require('bcryptjs')```
+3. In user schema model before exporting module
+ ```
+ // This will act as a Middleware between requestion and mongoose.save() method
+ userschema.pre('save',async (next)=>{
+    console.log('Hashed Successfully');
+    if(this.isModified('password')){
+        this.password = await bcrypt.hash('password',12);
+        this.cpassword = await bcrypt.hash('cpassword',12);
+    }
+    next();
+ })
+ ```
