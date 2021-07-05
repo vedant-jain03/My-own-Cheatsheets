@@ -61,3 +61,32 @@ router.get('/',(req,res)=>{
     res.status(200).json(req.body);
 })
 ```
+
+### Usr Registration
+```
+const User = require('Schema Model Path');
+router.get('/register',async (req,res)=>{
+    // Destructure Schema 
+    const {name,email,phone,work,password,cpassword}= req.body;
+    
+    if(!name || !email || ....){
+        res.status(509).json({message:"Empty Field"})
+    }
+    try{
+       const userexist = await User.findOne({email:email})
+       if(userexist){
+          return res.status(500).json({message:"User Already Exist"});
+       }
+       const user = new User({name,email,phone,work,password,cpassword});
+       const userregister = await user.save();
+       if(userregister){
+          res.status(200).json({message:"User Registered"});
+       }else{
+          res.status(500).json({message:"Registration Failed"});
+       }
+    }catch((err)=>{
+       console.log(err);
+       res.status(500).json({message:"Error "})
+    })
+})
+```
