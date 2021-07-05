@@ -50,7 +50,7 @@ const MySchema = new mongoose.Schema({
 ```
 ```
 // Creating a Model
-const ModelName = mongoose.model('modelname',schemaname);
+const ModelName = mongoose.model('collection name(singular)',schemaname);
 ```
 
 ### Routing
