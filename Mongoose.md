@@ -23,3 +23,12 @@ mongoose.connect(DB,{
     }
 })
 ```
+### Secure Mongo using dotenv
+ 1. ```npm i dotenv```
+ 2. create new file config.env and put DB= '<DB Connection URL>'
+ 3. 
+ ```
+ const dotenv= require('dotenv')
+ dotenv.config({path:'./config.env'})
+ ```
+ 4. Put config.env in .gitignore file
