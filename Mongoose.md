@@ -25,7 +25,7 @@ mongoose.connect(DB,{
 ```
 ### Secure Mongo using dotenv
  1. ```npm i dotenv```
- 2. create new file config.env and put DB= '<DB Connection URL>'
+ 2. create new file config.env and put DB= 'DB Connection URL'
  3. 
  ```
  const dotenv= require('dotenv')
