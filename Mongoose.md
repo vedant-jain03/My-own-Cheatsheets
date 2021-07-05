@@ -32,3 +32,32 @@ mongoose.connect(DB,{
  dotenv.config({path:'./config.env'})
  ```
  4. Put config.env in .gitignore file
+
+### Schema and Model
+```Schema defines the structure of our Document.```
+``` 
+// Creating New Schema
+const MySchema = new mongoose.Schema({
+   name:{
+      type: String,
+      require: true
+   },
+   Phone:{
+      type: Number,
+      require: true
+   }
+})
+```
+```
+// Creating a Model
+const ModelName = mongoose.model('modelname',schemaname);
+```
+
+### Routing
+```
+const express=require('express')
+const router = express.Router();
+router.get('/',(req,res)=>{
+    res.status(200).json(req.body);
+})
+```
