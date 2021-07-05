@@ -62,7 +62,7 @@ router.get('/',(req,res)=>{
 })
 ```
 
-### Usr Registration
+### User Registration
 ```
 const User = require('Schema Model Path');
 router.get('/register',async (req,res)=>{
@@ -88,5 +88,29 @@ router.get('/register',async (req,res)=>{
        console.log(err);
        res.status(500).json({message:"Error "})
     })
+})
+```
+
+### User Login
+```
+// Login Registration
+router.post('/signin',async (req,res)=>{
+    const {email,password}=req.body;
+    if(!email || !password){
+        return res.status(509).json({message:'Empty Fields'});
+    }
+    try{
+        const useremail= await User.findOne({email:email})
+        const userpassword= await User.findOne({password:password})
+        if(useremail && !userpassword){
+            return res.status(500).json({message:'Password is Wrong'})
+        }
+        else if(!useremail || !userpassword){
+            return res.status(500).json({message:'User Not Found '})
+        }
+        res.status(200).json({message:'Login Succesful'});
+    }catch(err){
+        console.log(err);
+    }
 })
 ```
