@@ -103,7 +103,7 @@ router.post('/signin',async (req,res)=>{
     }
     try{
         const useremail= await User.findOne({email:email})
-        const userpassword= await User.findOne({password:password})
+        const userpassword= await bcrypt.compare(password, useremail.password);
         if(useremail && !userpassword){
             return res.status(500).json({message:'Password is Wrong'})
         }
