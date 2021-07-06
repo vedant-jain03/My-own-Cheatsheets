@@ -132,3 +132,45 @@ router.post('/signin',async (req,res)=>{
     next();
  })
  ```
+
+### Tokens and Cookies
+#### Creating a token using JWT
+1. ```npm i jsonwebtoken```
+2. in auth.js We hava to store tokens in respective user db, so creating a new field in shema
+   ```
+   tokens:[
+         token:{
+              type: String,
+              required: true
+         }
+   ]
+   ```
+3. Creating a method for generating token (in auth.js)
+   ```
+   UserSchema.methods.generateAuthToken = async function(){
+       try{
+          // Generate SECRET_KEY in process.env atleast of size 32
+          let newtoken = jwt.sign({_id:this._id},process.env.SECRET_KEY)
+          // saving newtoken in _id user tokens array
+          this.tokens = this.tokens.concat({token:newtoken})
+          await this.save();
+          return newtoken;
+       }catch(err){
+          console.log(err);
+       }
+   }
+   ```
+4. In Login Route after Succesfully login Condition
+   ```
+   const token = await useremail.generateAuthToken();
+   ```
+   
+ #### Creating a cookie
+ 
+ 1. After token Generated
+   ```
+   res.cookie("newcookie",{
+       http.Only: true
+   })
+   ```
+ 
