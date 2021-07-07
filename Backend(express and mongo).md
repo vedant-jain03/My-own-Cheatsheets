@@ -173,4 +173,20 @@ router.post('/signin',async (req,res)=>{
        http.Only: true
    })
    ```
+   
+### Contact Route
+```
+router.post('/contact', async(req,res)=>{
+  try{
+      const {name,email,phone,message}=req.body();
+      if(!name || !email ...)res.status(500).json({message:"Invalid Input"});
+      const newquery = new ContactSchema({name,email,phone,message});
+      newquery.save();
+      res.status(200).json({message:"Query Recieved"})
+  }catch(err){
+     console.log(err);
+  }
+   
+})
+```
  
