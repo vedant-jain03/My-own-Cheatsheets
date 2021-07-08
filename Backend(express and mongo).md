@@ -203,3 +203,15 @@ router.get("/about", async (req,res)=>{
 })
 ```
 
+### Patch Method
+```
+router.patch('/about',async(req,res)=>{
+     try{
+         const {_id} = req.body;
+         const result = await User.findByIdAndUpdate(_id,req.body,{new:true});
+         res.status(200).json(result);
+     }catch(err){
+         console.log(err);
+     }
+})
+```
