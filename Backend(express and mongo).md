@@ -190,3 +190,16 @@ router.post('/contact', async(req,res)=>{
 })
 ```
  
+### Get Method
+```
+router.get("/about", async (req,res)=>{
+    try{
+       const {_id} = req.body;
+       const result = await CollectionName.findOne({}); // {} will return all data;
+       res.status(200).json(result);
+    }catch(err){
+       console.log(err);
+    }
+})
+```
+
