@@ -1,3 +1,32 @@
+### Initial Steps for backend enviorment
+1. ```npm init```
+2. 
+   ``` 
+   // npm i express
+   // npm i nodemon
+   // npm i cors
+   // npm i body-parser
+   ```
+3. 
+   ```
+   const express = require('express')
+   const app = express();
+   const cors = require('cors')
+   const bodyparser = require('body-parser')
+   
+   app.use(bodyparser.json());
+   app.use(bodyparser.urlencoded({extended:true}))
+   app.use(cors())
+   
+   app.get('/',(req,res)=>{
+      res.send("Backend is Ready to run")
+   })
+   
+   app.listen(5000,()=>{
+      console.log('Listening to port')
+   })
+   ```
+
 ### Connection
 ``` const mongoose = require('mongoose') ```
 
