@@ -244,3 +244,15 @@ router.patch('/about',async(req,res)=>{
      }
 })
 ```
+
+### Delete Method
+```
+router.delete('/deletethispost',async(req,res)=>{
+    try{
+        const result = await NewBlog.findByIdAndDelete(req.body);
+        res.status(200).json(result);
+    }catch(err){
+        console.log(err);
+    }
+})
+```
